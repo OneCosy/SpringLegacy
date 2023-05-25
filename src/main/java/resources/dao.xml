@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="beforeAdvice" class="com.bit.aop.basic1.BeforeAdvice"/>
+    <bean id="afterAdvice" class="com.bit.aop.basic1.AfterAdvice"/>
+    <bean id="oracleDao" class="com.bit.aop.basic1.OracleDao" scope="singleton"></bean>
+    <bean id="mysqlDao" class="com.bit.aop.basic1.MySqlDao" scope="singleton"></bean>
+    <bean id="timeAdvice" class="com.bit.aop.basic1.LoggerAdvice" scope="singleton"></bean>
+
+    <aop:config>    <!-- 환경 -->
+        <!--<aop:aspect id="bf" ref="beforeAdvice">
+            &lt;!&ndash;
+                public    /          *           / com.bit.aop.basic1.Dao*  /    .*    / (..)
+                접근제한자 / 반환형(int, void 등등) /          패키지           /   메소드  / 파라미터
+            &ndash;&gt;
+            <aop:before method="beforeMethod" pointcut="execution(public * com.bit.aop.basic1.Dao*.*(..))"/>
+        </aop:aspect>
+
+        <aop:aspect id="af" ref="afterAdvice">
+            <aop:after-returning method="afterReturningMethod" pointcut="execution(public * com.bit.aop.basic1.Dao*.*(..))"/>
+            <aop:after-throwing method="afterThrowing" pointcut="execution(public * com.bit.aop.basic1.Dao*.*(..))"/>
+            <aop:after method="afterMethod" pointcut="execution(public * com.bit.aop.basic1.Dao*.*(..))"/>
+        </aop:aspect>-->
+
+        <aop:aspect id="time" ref="timeAdvice">
+            <aop:around method="loggerProcess" pointcut="execution(public * com.bit.aop.basic1.Dao*.*(..))"/>
+        </aop:aspect>
+    </aop:config>
+</beans>

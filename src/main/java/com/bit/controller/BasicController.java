@@ -111,4 +111,9 @@ public class BasicController {
     public String listProcess(Model model, HttpServletRequest request) {
         return "basicView/List";
     }
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String listPage(Model model) {
+        return "cart/productList";
+    }
 }

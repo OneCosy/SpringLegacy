@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <aop:aspectj-autoproxy/>
+    <context:annotation-config/>
+    <context:component-scan base-package="com.bit.ex01"/>
+
+    <bean id="myCats" class="com.bit.ex01.Cats" scope="singleton">
+        <property name="name" value="고양이"></property>
+        <property name="age" value="5"></property>
+        <property name="color" value="white"></property>
+    </bean>
+
+    <bean id="add" class="com.bit.test1.CalcAdd" scope="singleton">
+        <constructor-arg name="a" type="int" value="25"></constructor-arg>
+        <constructor-arg name="b" type="int" value="36"></constructor-arg>
+    </bean>
+
+    <bean id="mul" class="com.bit.test1.CalcMul" scope="singleton">
+        <property name="c" value="25"></property>
+        <property name="d" value="36"></property>
+    </bean>
+
+    <bean id="rect" class="com.bit.ex02.com.edu.entity.Rectangle" scope="singleton">
+        <constructor-arg name="title" type="java.lang.String" value="사각형"></constructor-arg>
+        <constructor-arg name="data1" type="int" value="4"></constructor-arg>
+        <constructor-arg name="data2" type="int" value="5"></constructor-arg>
+    </bean>
+
+    <bean id="tri" class="com.bit.ex02.com.edu.entity.Triangle" scope="singleton">
+        <property name="title" value="삼각형"></property>
+        <property name="data1" value="3"></property>
+        <property name="data2" value="7"></property>
+    </bean>
+
+</beans>

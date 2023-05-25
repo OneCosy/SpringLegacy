@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.annotation.Resource;
 
 @Controller
+/* @RequestMapping("/board/")   // NameSpace를 명시함으로써 여러 컨트롤러가 있을 때, 중복되는 service 이름이 있을 때 구분하기 위해 설정할 수 있다. */
 public class BitDemoServiceController {
     @Resource(name = "bitDemoServiceImp")
     private BitDemoService service; // Controller는 Service를 가지고 있다.

@@ -45,8 +45,19 @@
         <property name="password" value="bit1234" />
     </bean>
 
+    <!-- log추가 -->
+    <bean class="net.sf.log4jdbc.Log4jdbcProxyDataSource" id="ds">
+        <constructor-arg ref="dataSource"/>
+        <property name="logFormatter">
+            <bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+            <property value="MULTI_LINE" name="loggingType"/>
+            <property value="SQL : " name="sqlPrefix"/>
+            </bean>
+        </property>
+    </bean>
+
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"></property>
+        <property name="dataSource" ref="ds"></property>
     </bean>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
@@ -56,7 +67,7 @@
         <!-- dataSource : DB를 객체화 시킨 것-->
         <!-- name의 dataSource는 제조사에서 만들어 놓은 것.-->
         <!-- ref의 dataSource는 임의로 지어준 이름.(위에서 정해준 DataSource bean의 id) -->
-        <property name="dataSource" ref="dataSource"></property>
+        <property name="dataSource" ref="ds"></property>
         <property name="configLocation" value="classpath:/mybatis-config.xml"></property>
         <property name="mapperLocations" value="classpath:/mappers/**/*Mapper.xml"></property>
     </bean>

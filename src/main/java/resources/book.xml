@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="com.bit.di.basic2"/>
+
+    <bean id="book1" class="com.bit.di.basic2.Book" scope="singleton" p:author="김가영" p:price="5000" p:publisher="비트출판" p:title="Spring">
+        <qualifier value="qv1"></qualifier>
+    </bean>
+
+    <bean id="book2" class="com.bit.di.basic2.Book">
+        <qualifier value="qv2"></qualifier>
+        <constructor-arg name="author" index="0" type="java.lang.String" value="이도경"/>
+        <constructor-arg name="price" index="1" type="int" value="22222"/>
+        <constructor-arg name="publisher" index="2" type="java.lang.String" value="2분대장"/>
+        <constructor-arg name="title" index="3" type="java.lang.String" value="인성 문제있어?"/>
+    </bean>
+
+    <bean id="book3" class="com.bit.di.basic2.Book">
+        <qualifier value="qv3"></qualifier>
+        <property name="author" value="이승윤"></property>
+        <property name="price" value="8000"></property>
+        <property name="publisher" value="삼성출판"></property>
+        <property name="title" value="Java.."></property>
+    </bean>
+</beans>
