@@ -8,6 +8,7 @@
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="copyright" content="Copyright 2009 @ high1 all rights reserved"/>
     <link href="${pageContext.request.contextPath}/resources/css/contents.css?ver=1" rel="stylesheet" type="text/css"/>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script>
         $(function(){
@@ -20,17 +21,17 @@
 
 </head>
 <body>
-<form name="login" method="post" action="${pageContext.request.contextPath}/loginCheck">
+<form name="login" method="post" action="${pageContext.request.contextPath}/loginInterChk">
     <div id="loginWrapper">
         <div class="loginForm">
             <fieldset>
                 <legend>관리자 시스템 로그인</legend>
                 <dl>
                     <dt><img src="${pageContext.request.contextPath}/resources/img/common/th_id.gif" alt="아이디"/></dt>
-                    <dd><input type="text" name="user_id" class="text" id="user_id"/></dd>
+                    <dd><input type="text" name="id" class="text" id="id"/></dd>
 
                     <dt><img src="${pageContext.request.contextPath}/resources/img/common/th_pw.gif" alt="비밀번호"/></dt>
-                    <dd><input type="password" name="user_passwd" class="text" id="user_passwd"/></dd>
+                    <dd><input type="password" name="password" class="text" id="password"/></dd>
                 </dl>
                 <div class="btn">
                     <img id="btnSubmit" src="${pageContext.request.contextPath}/resources/img/button/btn_login.gif"

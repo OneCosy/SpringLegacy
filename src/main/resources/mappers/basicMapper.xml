@@ -15,4 +15,36 @@
     <update id="bitDemoUpdate" parameterType="bit">
         UPDATE BITDEMO SET name=#{name} where no = #{no}
     </update>
+
+    <select id="selectEmpList" parameterType="java.util.HashMap" resultType="emp">
+        SELECT * FROM EMP
+        <where>
+            <if test="ename!=null">
+                ENAME=#{ename}
+            </if>
+            <if test="job!=null">
+                OR JOB=#{job}
+            </if>
+        </where>
+        /* ERROR */
+
+        <!--SELECT * FROM EMP
+        <trim prefix="where" suffixOverrides="AND|OR" prefixOverrides="AND|OR">
+            <if test="ename!=null">
+                ENAME=#{ename}
+            </if>
+            OR
+            <if test="job!=null">
+                JOB=#{job}
+            </if>
+        </trim>-->
+    </select>
+
+    <delete id="deleteEmp" parameterType="java.util.List">
+        DELETE FROM EMP
+        WHERE EMPNO IN
+        <foreach item="i" collection="list" open="(" close=")" separator="," index="index">
+            #{i}
+        </foreach>
+    </delete>
 </mapper>
