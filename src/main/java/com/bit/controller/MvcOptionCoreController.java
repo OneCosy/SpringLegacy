@@ -10,9 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class MvcOptionCoreController {
@@ -83,5 +81,48 @@ public class MvcOptionCoreController {
             model.addAttribute("count", (int) map.get("count"));
         }
         return "mvcLocation/nextpage";
+    }
+
+    @PostMapping(value = "ajaxPieChart1")
+    public String pieChartProcess(Model model) {
+        List<Object> list =  mvcOptionService.selectGroupEmp();
+        System.out.println(list + "------------------");
+
+        StringBuffer sb = new StringBuffer();
+        sb.append("['Maxsal', 'Group per job'], ");
+
+        int lastIndex=0;
+        for(Object o:list) {//o 는 맵
+            //System.out.println("o"+ o);
+            // entrySet()은 Map 객체에 저장된 key-value 쌍들을 가져올 수 있다.
+            Set<Map.Entry<String, Object>> set = ((HashMap<String, Object>) o).entrySet();
+
+            Iterator<Map.Entry<String, Object>> i = set.iterator();
+            sb.append("[");
+
+            int index=0;
+
+            while(i.hasNext()) {
+                Map.Entry<String,Object> entry = i.next();
+                index++;
+                System.out.println(entry.getKey() + " " + entry.getValue());
+
+                if(entry.getKey().equals("JOB")) {
+                    sb.append("'" + entry.getValue() + "',");
+                } else if(entry.getKey().equals("SAL")) {
+                    sb.append(entry.getValue());
+                }
+            }//while
+            if(lastIndex==list.size()-1)
+                sb.append("]");
+            else {
+                sb.append("],");
+            }
+            lastIndex++;
+        }
+        System.out.println(sb.toString());
+        model.addAttribute("data", sb.toString());
+
+        return "/mvcLocation/ajaxChartResult";
     }
 }

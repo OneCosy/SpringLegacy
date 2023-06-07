@@ -47,4 +47,10 @@
             #{i}
         </foreach>
     </delete>
+
+    <select id="selectGroupEmp" resultType="java.util.HashMap">
+        SELECT	MAX(SAL) SAL, JOB
+        FROM	EMP
+        GROUP BY JOB;
+    </select>
 </mapper>

@@ -38,7 +38,8 @@
                          alt="LOGIN" title="LOGIN"/>
                 </div>
 
-                <div class="saveId"><input type="checkbox" id="checker" name="checker"/>
+                <div class="saveId">
+                    <input type="checkbox" id="checker" name="checker"/>
                     <img src="${pageContext.request.contextPath}/resources/img/common/save_id.gif" alt="아이디 저장"/>
                 </div>
             </fieldset>
