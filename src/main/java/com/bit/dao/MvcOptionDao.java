@@ -9,4 +9,5 @@ public interface MvcOptionDao {
     public List<EmpDTO> selectEmpList(HashMap<String, Object> map);
 
     public void deleteEmpList(List<String> list);
+    public List<Object> selectGroupEmp();
 }

@@ -25,4 +25,9 @@ public class MvcOptionDaoImp implements MvcOptionDao {
     public void deleteEmpList(List<String> list) {
         sqlSession.delete(nameSpace + ".deleteEmp", list);
     }
+
+    @Override
+    public List<Object> selectGroupEmp() {
+        return sqlSession.selectList(nameSpace + ".selectGroupEmp");
+    }
 }

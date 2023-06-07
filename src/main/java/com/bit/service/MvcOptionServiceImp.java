@@ -22,4 +22,9 @@ public class MvcOptionServiceImp implements MvcOptionService {
     public void deleteEmpList(List<String> list) {
         dao.deleteEmpList(list);
     }
+
+    @Override
+    public List<Object> selectGroupEmp() {
+        return dao.selectGroupEmp();
+    }
 }
